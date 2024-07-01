@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=70.1.1", "wheel>=0.43.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bezzanlabs.gpt_docgen"
+dynamic = ["version"]
+authors = [
+  {name="Vitor Bezzan", email="vitor@bezzan.com"},
+]
+description = "CLI tool to generate project documentation from GPT models."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.dynamic]
+version = {attr = "__version__"}
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit==3.7.1",
+    "mypy==1.10.1",
+    "pytest==8.2.2",
+    "pytest-mock",
+    "pytest-cov",
+    "sphinx_autodoc_typehints==2.2.2",
+    "nbsphinx==0.9.4",
+    "sphinx==7.3.7",
+    "sphinx_copybutton==0.5.2",
+    "sphinx_rtd_theme==2.0.0",
+    "recommonmark==0.7.1",
+    "isort==5.13.2",
+    "pandas-stubs==2.2.2.240603",
+    "pydantic==2.7.4"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/vitorbezzan/gpt_docgen"
+"Bug Tracker" = "https://github.com/vitorbezzan/gpt_docgen"
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report html --cov-report term-missing --cov-fail-under 0"
+pythonpath = [
+  "src"
+]
