@@ -11,10 +11,13 @@ authors = [
 description = "CLI tool to generate project documentation from GPT models."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "pydantic==2.7.4",
+    "typer==0.12.3",
+]
 
 [tool.setuptools.dynamic]
-version = {attr = "__version__"}
+version = {attr = "constants.__version__"}
 
 [project.optional-dependencies]
 dev = [
@@ -31,7 +34,6 @@ dev = [
     "recommonmark==0.7.1",
     "isort==5.13.2",
     "pandas-stubs==2.2.2.240603",
-    "pydantic==2.7.4"
 ]
 
 [project.urls]

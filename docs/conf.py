@@ -4,8 +4,8 @@ from pathlib import Path
 
 from recommonmark.transform import AutoStructify
 
-from src import __package_name__
-from src import __version__ as release
+from src.constants import __package_name__
+from src.constants import __version__ as release
 
 # Including source path
 sys.path.insert(0, os.path.abspath(os.path.join("..", "src")))

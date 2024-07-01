@@ -1,6 +1,12 @@
 """
 Starting point for the package.
 """
+from cli import app
 
-__package_name__ = "bezzanlabs.gpt_docgen"
-__version__ = "0.1.0"
+
+def start_application():
+    app(prog_name="bezzanlabs.gpt_docgen")
+
+
+if __name__ == "__main__":
+    start_application()
