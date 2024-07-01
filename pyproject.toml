@@ -47,8 +47,12 @@ dev = [
 "Homepage" = "https://github.com/vitorbezzan/gpt_docgen"
 "Bug Tracker" = "https://github.com/vitorbezzan/gpt_docgen"
 
+[project.scripts]
+gpt_docgen = "__init__:start_application"
+
 [tool.pytest.ini_options]
 addopts = "--cov=src --cov-report html --cov-report term-missing --cov-fail-under 0"
 pythonpath = [
   "src"
 ]
+

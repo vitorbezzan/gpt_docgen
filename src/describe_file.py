@@ -36,7 +36,9 @@ Use headings to breakdown the documentation into the following sections:
     - Other: all other dependencies that are not part of the standard library. If there
         is none, please write "None".
 
-    All module names should be formatted as code blocks in both sections.
+    All module names should be formatted as code blocks in both sections. No need to
+    include the version numbers of the dependencies or the python 'as' keyword to
+    describe the import.
 
 - Description: A summary of few paragraphs describing what the file does and how it works.
     Please use wording that is resembles other software documentation. Good examples

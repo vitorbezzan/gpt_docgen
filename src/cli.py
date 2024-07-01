@@ -104,7 +104,8 @@ def describe_dir(
 
     if dir_path.is_dir():
         typer.echo(f"Generating descriptions for dir {dir_path.absolute()}")
-        pathlib.Path(current_dir/"descriptions").mkdir(parents=True, exist_ok=True)
+        md_dir = pathlib.Path(current_dir/"docs"/"markdown")
+        md_dir.mkdir(parents=True, exist_ok=True)
 
         for file_path in glob.glob(f"{dir_path}/*.py", recursive=True):
             if "__init__" in file_path:
@@ -115,9 +116,7 @@ def describe_dir(
                 file_content = python_file.read()
 
             md_file_location = (
-                pathlib.Path(
-                    current_dir/"descriptions"/file_path
-                ).with_suffix(".md").resolve().absolute()
+                pathlib.Path(md_dir/file_path).with_suffix(".md").resolve().absolute()
             )
             md_file_location.parent.mkdir(parents=True, exist_ok=True)
             with open(md_file_location, "w") as markdown_file:
