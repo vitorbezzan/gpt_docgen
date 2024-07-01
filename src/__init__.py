@@ -5,6 +5,9 @@ from cli import app
 
 
 def start_application():
+    """
+    Starts the application.
+    """
     app(prog_name="bezzanlabs.gpt_docgen")
 
 

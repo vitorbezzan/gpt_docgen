@@ -14,6 +14,9 @@ requires-python = ">=3.10"
 dependencies = [
     "pydantic==2.7.4",
     "typer==0.12.3",
+    "langchain==0.2.6",
+    "openai==1.35.7",
+    "python-dotenv",
 ]
 
 [tool.setuptools.dynamic]
