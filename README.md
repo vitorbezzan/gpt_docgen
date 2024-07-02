@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the `gpt_docgen` repository, a cutting-edge documentation generation tool designed to streamline the process of creating detailed, accurate, and insightful documentation for your codebase using the power of language models. 
+Welcome to the `gpt_docgen` repository, a cutting-edge documentation generation tool designed to streamline the process of creating detailed, accurate, and insightful documentation for your codebase using the power of language models.
 
 The primary features of `gpt_docgen` include:
 
@@ -28,7 +28,7 @@ To install `gpt_docgen`, you will need Python 3.11 or newer. Follow these steps 
    ```
 
 You can also install the package directly from PyPI using pip:
-    
+
 ```bash
 pip install bezzanlabs.gpt_docgen
 ```

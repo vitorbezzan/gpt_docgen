@@ -1,19 +1,18 @@
 """
 Creates README markdown file using LLMs.
 """
-import typer
 import pathlib
 
+import typer
+from langchain.chains import ConversationalRetrievalChain
 from langchain_chroma import Chroma
 from langchain_community.document_loaders.generic import GenericLoader
 from langchain_community.document_loaders.parsers import LanguageParser
 from langchain_text_splitters import Language, RecursiveCharacterTextSplitter
 from pydantic import AfterValidator, validate_call
 from typing_extensions import Annotated
-from langchain.chains import ConversationalRetrievalChain
 
-
-from constants import _available_embeddings, _available_chats
+from constants import _available_chats, _available_embeddings
 
 
 def _is_acceptable_vendor(vendor: str) -> str:
@@ -64,13 +63,13 @@ def generate_embedding(
 
 
 _question = """
-You are a developer with several years of experience. 
+You are a developer with several years of experience.
 
-You need to generate a README markdown file for a codebase, taking inspiration in all 
+You need to generate a README markdown file for a codebase, taking inspiration in all
 READMEs you have seen in the past from different open source projects. It needs to
 have some sections:
 
-- Introduction: where you introduce what the codebase does, and summarizes the main 
+- Introduction: where you introduce what the codebase does, and summarizes the main
     features.
 - Installation: where you explain how to install the codebase.
 - Example: where you explain how to use the codebase briefly.
@@ -100,7 +99,9 @@ def generate_readme(
     if db_path.exists():
         db = Chroma(
             persist_directory=f"{db_path}",
-            embedding_function=_available_embeddings.get(vendor, "openai")(disallowed_special=()),
+            embedding_function=_available_embeddings.get(vendor, "openai")(
+                disallowed_special=()
+            ),
         )
         retriever = db.as_retriever()
         qa = ConversationalRetrievalChain.from_llm(
@@ -111,7 +112,7 @@ def generate_readme(
         history = []
         result = qa({"question": _question % model, "chat_history": history})
 
-        with (current_path/"README.md").open("w") as readme:
+        with (current_path / "README.md").open("w") as readme:
             readme.write(result["answer"])
 
     else:
