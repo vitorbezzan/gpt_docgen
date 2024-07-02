@@ -1,10 +1,10 @@
-# gpt_docgen
+# `gpt_docgen`
 
 ## Introduction
 
-Welcome to the gpt_docgen repository, a cutting-edge documentation generation tool designed to streamline the process of creating detailed, accurate, and insightful documentation for your codebase using the power of language models. 
+Welcome to the `gpt_docgen` repository, a cutting-edge documentation generation tool designed to streamline the process of creating detailed, accurate, and insightful documentation for your codebase using the power of language models. 
 
-The primary features of gpt_docgen include:
+The primary features of `gpt_docgen` include:
 
 - **Automatic Markdown Generation**: Automatically generates markdown files that describe the functionalities and usage of your code files, making your documentation process as effortless as possible.
 - **Custom Model Support**: With support for multiple language models, you can choose the model that best fits your needs and preferences for documentation style and detail level.
@@ -12,7 +12,7 @@ The primary features of gpt_docgen include:
 
 ## Installation
 
-To install BezzanLabs GPT DocGen, you will need Python 3.6 or newer. Follow these steps to get started:
+To install `gpt_docgen`, you will need Python 3.11 or newer. Follow these steps to get started:
 
 1. Clone the repository to your local machine:
    ```bash
