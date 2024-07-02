@@ -11,7 +11,7 @@ from dotenv import dotenv_values, load_dotenv
 
 from constants import __package_name__, __version__
 from describe_file import describe
-from embedding import generate_embedding
+from embedding import generate_embedding, generate_readme
 
 app = typer.Typer(name=f"{__package_name__}", no_args_is_help=True)
 current_dir = pathlib.Path(os.getcwd()).resolve().absolute()
@@ -128,6 +128,18 @@ def embedding(vendor: str = "openai"):
     """
     (current_dir / "docs" / "embedding").mkdir(parents=True, exist_ok=True)
     generate_embedding(current_dir, vendor)
+
+
+@app.command()
+def readme(vendor: str = "openai", model: str = "gpt-4-turbo-preview"):
+    """
+    Generates README.md file in root using LLMs.
+
+    Args:
+        vendor: Vendor to use for model.
+        model: Model to use from the selected vendor.
+    """
+    generate_readme(current_dir, vendor, model)
 
 
 @app.callback()

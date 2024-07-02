@@ -1,37 +1,29 @@
 # cli.py
 
 ## Summary
-
-This code defines a command-line interface (CLI) tool for generating markdown documentation for Python files and directories, managing environment variables, and creating embeddings, utilizing the capabilities of language models.
+This code provides a command-line interface (CLI) for generating markdown documentation and embeddings for files and directories using language models.
 
 ## Dependencies
 
 ### Standard Library
-
 - `glob`
 - `os`
 - `pathlib`
 - `typing`
 
 ### Other
-
 - `typer`
 - `dotenv`
 
 ## Description
+The `cli.py` file is an essential part of a package designed to interact with the user through the command line, offering a range of functionalities like generating markdown documentation for Python files, handling environment variables, and creating embeddings using large language models (LLMs). This CLI tool leverages the `typer` library for creating the CLI and the `dotenv` library for managing environment variables, which enhances the user's ability to control and automate the documentation and embedding generation processes.
 
-The `cli.py` module serves as the command-line interface entry point for a package designed to leverage language models for generating documentation and embeddings. It uses the Typer library for creating the CLI, allowing for an easy definition of commands and options. This CLI tool facilitates several operations including the generation of markdown documentation for Python files and directories, loading and displaying environment variables from an `.env` file, and creating embeddings using language models.
+The CLI provides commands for generating markdown documentation for individual files or entire directories, handling environment variables through a specified `.env` file, and generating README files or embeddings for directories. The commands are designed to be intuitive and provide immediate feedback to the user, including error handling for common scenarios like missing files or directories.
 
-Upon execution, the CLI tool supports the following commands:
+The `describe_file` and `describe_dir` commands utilize a language model (defaulting to `gpt-4-turbo-preview`) to generate markdown documentation for Python files. These commands are flexible, allowing the user to specify the vendor and model of the language processing service. This feature is particularly useful for developers looking to automate the documentation of their projects, ensuring consistency and saving time.
 
-- **describe_file**: Given a path to a Python file, it uses a specified language model to generate a markdown file that describes the Python file's content. This command allows specifying the vendor and model of the language model to be used.
+In addition to documentation generation, the CLI offers functionality for creating a high-level overview of a project's structure through embeddings with the `embedding` command and for generating a project README with the `readme` command. These features leverage the power of LLMs to synthesize and present complex information in a more accessible format.
 
-- **describe_dir**: This command extends the functionality of `describe_file` to a directory, generating markdown documentation for each Python file found within the specified directory, excluding any `__init__.py` files. The generated markdown files are saved in a structured directory under `docs/markdown` relative to the current working directory.
-
-- **embedding**: Generates embeddings for the Python files within the current working directory, creating a README markdown file that includes simple explanations for each component. The embeddings are saved in a directory structure under `docs/embedding`.
-
-The CLI also provides a callback function, `main`, which is used to handle global options such as specifying an environment file path with `-e` or `--environment` and displaying the application's version with `-v` or `--version`. The environment file path option allows users to load custom environment variables from a specified file, enhancing the flexibility in managing configurations.
-
-The tool is built with extensibility and ease of use in mind, making it straightforward to add additional commands or modify existing ones. The use of Typer for the CLI design ensures that adding new features or commands is a relatively simple process, requiring minimal boilerplate code.
+Overall, `cli.py` is a robust tool designed to simplify and automate the process of generating documentation and embeddings for Python projects. Its integration of environment variable management, error handling, and customization options makes it a valuable asset for developers looking to improve their workflow.
 
 *This documentation was generated using gpt-4-turbo-preview.*
