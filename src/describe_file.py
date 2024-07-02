@@ -1,12 +1,13 @@
 """
 Base package using LLMs with langchain.
 """
-import typing as tp
+import pathlib
 
 import typer
-from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import AfterValidator, validate_call
+from typing_extensions import Annotated
 
 from constants import _available_chats
 
@@ -45,9 +46,53 @@ The code is the following:
 """
 
 
+def _is_acceptable_vendor(vendor: str) -> str:
+    assert vendor in _available_chats  # noqa: S101
+    return vendor
+
+
+AcceptedVendor = Annotated[str, AfterValidator(_is_acceptable_vendor)]
+
+
+@validate_call
+def describe(
+    in_file: pathlib.Path,
+    out_file: pathlib.Path,
+    vendor: AcceptedVendor,
+    model: str,
+) -> None:
+    """
+    Calls a description for one specific file.
+
+    Args:
+        in_file: File path to describe.
+        out_file: File path to save the description.
+        vendor: Vendor to use for model.
+        model: Model to use from the selected vendor.
+    """
+    in_file_ = in_file.resolve().absolute()
+
+    if in_file_.is_file():
+        typer.echo(f"Generating description for {in_file_}")
+        with in_file.open("r") as python_file:
+            file_content = python_file.read()
+    else:
+        raise typer.BadParameter(f"File not found: {in_file_}")
+
+    with out_file.resolve().absolute().open("w") as md_file:
+        md_file.write(
+            generate_description(
+                in_file.name,
+                vendor,
+                model,
+                file_content,
+            )
+        )
+
+
 def generate_description(
     name: str,
-    vendor: tp.Optional[BaseChatModel],
+    vendor: str,
     model: str,
     code_block: str,
 ) -> str:

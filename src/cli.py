@@ -4,26 +4,17 @@ CLI base module for package.
 import glob
 import os
 import pathlib
-from typing import Optional, cast
+from typing import Optional
 
 import typer
 from dotenv import dotenv_values, load_dotenv
-from pydantic import AfterValidator, validate_call
-from pydantic.types import Annotated
 
-from constants import __package_name__, __version__, _available_chats
-from describe_file import generate_description
+from constants import __package_name__, __version__
+from describe_file import describe
+from embedding import generate_embedding
 
 app = typer.Typer(name=f"{__package_name__}", no_args_is_help=True)
 current_dir = pathlib.Path(os.getcwd()).resolve().absolute()
-
-
-def _is_acceptable_vendor(vendor: str) -> str:
-    assert vendor in _available_chats  # noqa: S101
-    return vendor
-
-
-AcceptedVendor = Annotated[str, AfterValidator(_is_acceptable_vendor)]
 
 
 def _environment(path: str) -> None:
@@ -57,42 +48,6 @@ def _version(value: bool) -> None:
         raise typer.Exit()
 
 
-@validate_call
-def _describe_file(
-    in_file: pathlib.Path,
-    out_file: pathlib.Path,
-    vendor: AcceptedVendor,
-    model: str,
-) -> None:
-    """
-    Calls a description for one specific file.
-
-    Args:
-        in_file: File path to describe.
-        out_file: File path to save the description.
-        vendor: Vendor to use for model.
-        model: Model to use from the selected vendor.
-    """
-    in_file_ = in_file.resolve().absolute()
-
-    if in_file_.is_file():
-        typer.echo(f"Generating description for {in_file_}")
-        with in_file.open("r") as python_file:
-            file_content = python_file.read()
-    else:
-        raise typer.BadParameter(f"File not found: {in_file_}")
-
-    with out_file.resolve().absolute().open("w") as md_file:
-        md_file.write(
-            generate_description(
-                in_file.name,
-                vendor,
-                model,
-                file_content,
-            )
-        )
-
-
 @app.command()
 def describe_file(
     path: str,
@@ -109,10 +64,10 @@ def describe_file(
         model: Model to use from the selected vendor.
     """
     file_path = pathlib.Path(path)
-    _describe_file(
+    describe(
         file_path,
         file_path.with_suffix(".md"),
-        cast(AcceptedVendor, vendor),
+        vendor,
         model,
     )
 
@@ -154,12 +109,25 @@ def describe_dir(
             )
             md_location.parent.mkdir(parents=True, exist_ok=True)
 
-            _describe_file(
+            describe(
                 pathlib.Path(file_path),
                 md_location,
-                cast(AcceptedVendor, vendor),
+                vendor,
                 model,
             )
+
+
+@app.command()
+def embedding(vendor: str = "openai"):
+    """
+    Creates README markdown file using LLMs. Scans for a directory, generates a simple
+    explanation for each component and consolidates it into a file.
+
+    Args:
+        vendor: Vendor to use for model.
+    """
+    (current_dir / "docs" / "embedding").mkdir(parents=True, exist_ok=True)
+    generate_embedding(current_dir, vendor)
 
 
 @app.callback()

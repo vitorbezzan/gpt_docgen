@@ -2,30 +2,36 @@
 
 ## Summary
 
-This code provides a command-line interface (CLI) for generating markdown documentation for Python files or directories containing Python files using a language model.
+This code defines a command-line interface (CLI) tool for generating markdown documentation for Python files and directories, managing environment variables, and creating embeddings, utilizing the capabilities of language models.
 
 ## Dependencies
 
 ### Standard Library
+
 - `glob`
 - `os`
 - `pathlib`
+- `typing`
 
 ### Other
+
 - `typer`
 - `dotenv`
-- `pydantic`
 
 ## Description
 
-The `cli.py` module is designed to facilitate the automation of documentation generation for Python projects. It leverages the command-line interface utility `typer` for parsing and executing commands, `dotenv` for environment variable management, and `pydantic` for data validation and settings management. The core functionality of this CLI tool revolves around reading Python files, generating descriptions for them using a machine learning model, and then saving those descriptions as markdown (.md) files.
+The `cli.py` module serves as the command-line interface entry point for a package designed to leverage language models for generating documentation and embeddings. It uses the Typer library for creating the CLI, allowing for an easy definition of commands and options. This CLI tool facilitates several operations including the generation of markdown documentation for Python files and directories, loading and displaying environment variables from an `.env` file, and creating embeddings using language models.
 
-Upon execution, the CLI can perform two main actions based on the command: `describe_file` and `describe_dir`. The `describe_file` command processes a single Python file specified by the user, generating a markdown file with a description as interpreted by the language model. Similarly, the `describe_dir` command iterates over a directory, generating markdown files for each Python file encountered (excluding `__init__.py` files). This allows for bulk processing of Python files, which is particularly useful for large projects.
+Upon execution, the CLI tool supports the following commands:
 
-The CLI also supports custom configuration through the use of an environment file. Users can specify the path to an environment file containing necessary configuration variables, which the CLI will then load and apply. This functionality is facilitated through the `dotenv` package, which is adept at managing environment variables for Python projects.
+- **describe_file**: Given a path to a Python file, it uses a specified language model to generate a markdown file that describes the Python file's content. This command allows specifying the vendor and model of the language model to be used.
 
-Moreover, the CLI includes a version information feature that displays the current version of the package when invoked. This can be useful for users to verify the version of the tool they are using.
+- **describe_dir**: This command extends the functionality of `describe_file` to a directory, generating markdown documentation for each Python file found within the specified directory, excluding any `__init__.py` files. The generated markdown files are saved in a structured directory under `docs/markdown` relative to the current working directory.
 
-This utility stands out by not just automating the documentation process but doing so in a way that is highly configurable and adaptable to the needs of various projects. By leveraging the power of modern language models, it aims to produce high-quality, human-readable documentation that can significantly enhance code readability and maintenance.
+- **embedding**: Generates embeddings for the Python files within the current working directory, creating a README markdown file that includes simple explanations for each component. The embeddings are saved in a directory structure under `docs/embedding`.
+
+The CLI also provides a callback function, `main`, which is used to handle global options such as specifying an environment file path with `-e` or `--environment` and displaying the application's version with `-v` or `--version`. The environment file path option allows users to load custom environment variables from a specified file, enhancing the flexibility in managing configurations.
+
+The tool is built with extensibility and ease of use in mind, making it straightforward to add additional commands or modify existing ones. The use of Typer for the CLI design ensures that adding new features or commands is a relatively simple process, requiring minimal boilerplate code.
 
 *This documentation was generated using gpt-4-turbo-preview.*

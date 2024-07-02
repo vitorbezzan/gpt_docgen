@@ -12,6 +12,7 @@ description = "CLI tool to generate project documentation from GPT models."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "chromadb==0.5.3",
     "pydantic==2.7.4",
     "typer==0.12.3",
     "openai==1.35.7",
@@ -21,6 +22,7 @@ dependencies = [
     "langchain_anthropic",
     "langchain_cohere",
     "langchain_openai",
+    "langchain_chroma==0.1.2",
 ]
 
 [tool.setuptools.dynamic]

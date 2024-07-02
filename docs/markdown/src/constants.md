@@ -1,29 +1,29 @@
 # constants.py
 
 ## Summary
-
-This code defines a set of constants used across the package, including available chat models and package metadata.
+This code defines constants and mappings for available chat models and embeddings in a package.
 
 ## Dependencies
 
 ### Standard Library
-
-- None
+- `typing`
 
 ### Other
-
-- `langchain_anthropic`
-- `langchain_cohere`
+- `langchain_community.chat_models`
+- `langchain_community.embeddings`
+- `langchain_core.embeddings`
+- `langchain_core.language_models.chat_models`
 - `langchain_openai`
 
 ## Description
+This Python file, `constants.py`, plays a crucial role in organizing and providing access to constant values and types across the package it belongs to. By defining constants such as `__package_name__`, `__version__`, and `__author__`, it offers essential metadata about the package, including its name, current version, and the author's contact information.
 
-The `constants.py` file serves as a centralized location for defining and managing constants used throughout the package. This includes metadata about the package itself such as its name, version, and author, as well as a dictionary of available chat models. The constants defined in this file are essential for ensuring consistency and manageability of the package's configurations and options.
+Furthermore, the file establishes two critical dictionaries: `_available_chats` and `_available_embeddings`. These dictionaries serve as registries that map string identifiers to their corresponding Python classes for chat models and embeddings, respectively.
 
-The metadata includes the package name (`__package_name__`), its current version (`__version__`), and the author's details (`__author__`). Such metadata is crucial for package distribution and maintenance, providing users and developers with basic information about the package.
+- `_available_chats` maps identifiers to chat model classes derived from `BaseChatModel`. This allows for dynamic selection and instantiation of chat models based on the identifier, facilitating the integration and usage of different chat models, such as `ChatOllama` and `ChatOpenAI`, within the package.
 
-Additionally, the file maps a set of keys to specific chat model classes from various libraries through the `_available_chats` dictionary. This mapping facilitates the dynamic selection and instantiation of chat models based on the user's preferences or requirements. The keys represent the names of the chat services (e.g., "openai", "cohere", "anthropic"), and the values are the respective classes from imported modules that implement the functionality for interacting with these services. This approach allows for a modular and flexible architecture where new chat models can be easily added or removed by updating this dictionary.
+- `_available_embeddings` functions similarly by mapping identifiers to embedding classes derived from the `Embeddings` base class. This registry supports the integration of different embeddings implementations like `OllamaEmbeddings` and `OpenAIEmbeddings`, enabling the package to utilize various embeddings services dynamically based on the identifier.
 
-In summary, `constants.py` plays a pivotal role in the package's configuration, providing a single source of truth for important constants that influence the package's behavior and its interaction with external services.
+This setup promotes modularity and flexibility within the package, allowing for easy expansion or modification by adding new chat models or embeddings to these dictionaries without altering the core functionality of the package. It exemplifies a common pattern in software design where constants and configurations are centralized, making the codebase more maintainable and scalable.
 
 *This documentation was generated using gpt-4-turbo-preview.*
