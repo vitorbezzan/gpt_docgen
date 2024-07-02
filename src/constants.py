@@ -10,7 +10,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 __package_name__ = "bezzanlabs.gpt_docgen"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__ = "Vitor Bezzan <vitor@bezzan.com>"
 
 _available_chats: tp.Dict[str, tp.Type[BaseChatModel]] = {

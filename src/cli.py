@@ -118,16 +118,17 @@ def describe_dir(
 
 
 @app.command()
-def embedding(vendor: str = "openai"):
+def embedding(vendor: str = "openai", model: Optional[str] = None):
     """
     Creates README markdown file using LLMs. Scans for a directory, generates a simple
     explanation for each component and consolidates it into a file.
 
     Args:
         vendor: Vendor to use for model.
+        model: Specific model to use when generating the embedding.
     """
     (current_dir / "docs" / "embedding").mkdir(parents=True, exist_ok=True)
-    generate_embedding(current_dir, vendor)
+    generate_embedding(current_dir, vendor, model)
 
 
 @app.command()

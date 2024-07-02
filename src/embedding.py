@@ -2,6 +2,7 @@
 Creates README markdown file using LLMs.
 """
 import pathlib
+import typing as tp
 
 import typer
 from langchain.chains import ConversationalRetrievalChain
@@ -27,6 +28,7 @@ AcceptedVendor = Annotated[str, AfterValidator(_is_acceptable_vendor)]
 def generate_embedding(
     current_path: pathlib.Path,
     vendor: AcceptedVendor,
+    model: tp.Optional[str] = None,
 ) -> None:
     """
     Generates embedding for a given code path.
@@ -34,6 +36,7 @@ def generate_embedding(
     Args:
         current_path: Path to the current running directory.
         vendor: Vendor of the model to use when generating README for.
+        model: Model to use in embedding.
 
     Returns:
         Generated embedding for code in docs/embeddings/.
@@ -55,9 +58,14 @@ def generate_embedding(
         chunk_overlap=200,
     ).split_documents(documents)
 
+    if model is None:
+        embeddings = _available_embeddings.get(vendor, "openai")()
+    else:
+        embeddings = _available_embeddings.get(vendor, "openai")(model=model)
+
     Chroma.from_documents(
         documents=texts,
-        embedding=_available_embeddings.get(vendor, "openai")(disallowed_special=()),
+        embedding=embeddings,
         persist_directory=f"{current_path/'docs'/'embedding'}",
     )
 
@@ -97,11 +105,14 @@ def generate_readme(
     """
     db_path = current_path / "docs" / "embedding"
     if db_path.exists():
+        if model is None:
+            embeddings = _available_embeddings.get(vendor, "openai")()
+        else:
+            embeddings = _available_embeddings.get(vendor, "openai")(model=model)
+
         db = Chroma(
             persist_directory=f"{db_path}",
-            embedding_function=_available_embeddings.get(vendor, "openai")(
-                disallowed_special=()
-            ),
+            embedding_function=embeddings,
         )
         retriever = db.as_retriever()
         qa = ConversationalRetrievalChain.from_llm(
@@ -109,8 +120,7 @@ def generate_readme(
             retriever=retriever,
         )
 
-        history = []
-        result = qa({"question": _question % model, "chat_history": history})
+        result = qa({"question": _question % model, "chat_history": []})
 
         with (current_path / "README.md").open("w") as readme:
             readme.write(result["answer"])
