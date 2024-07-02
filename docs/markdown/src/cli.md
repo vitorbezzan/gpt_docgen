@@ -2,7 +2,7 @@
 
 ## Summary
 
-This code acts as a CLI tool for generating markdown documentation for Python files or directories containing Python files using a language model.
+This code provides a command-line interface (CLI) for generating markdown documentation for Python files or directories containing Python files using a language model.
 
 ## Dependencies
 
@@ -10,22 +10,22 @@ This code acts as a CLI tool for generating markdown documentation for Python fi
 - `glob`
 - `os`
 - `pathlib`
-- `typing`
 
 ### Other
 - `typer`
 - `dotenv`
+- `pydantic`
 
 ## Description
 
-The `cli.py` script provides a command-line interface to automate the generation of markdown documentation for Python files. It utilizes the Typer library for the CLI functionality, enabling a user-friendly way to interact with the script's features. The script can process individual Python files or entire directories, generating a markdown file for each Python file encountered.
+The `cli.py` module is designed to facilitate the automation of documentation generation for Python projects. It leverages the command-line interface utility `typer` for parsing and executing commands, `dotenv` for environment variable management, and `pydantic` for data validation and settings management. The core functionality of this CLI tool revolves around reading Python files, generating descriptions for them using a machine learning model, and then saving those descriptions as markdown (.md) files.
 
-At the heart of this script are two main commands: `describe_file` and `describe_dir`. The `describe_file` command takes a path to a Python file, along with optional parameters for specifying the language model vendor and model version, and generates a markdown file containing the documentation for the Python file. Similarly, the `describe_dir` command processes all Python files within a specified directory, excluding any `__init__.py` files, and generates corresponding markdown documentation for each file.
+Upon execution, the CLI can perform two main actions based on the command: `describe_file` and `describe_dir`. The `describe_file` command processes a single Python file specified by the user, generating a markdown file with a description as interpreted by the language model. Similarly, the `describe_dir` command iterates over a directory, generating markdown files for each Python file encountered (excluding `__init__.py` files). This allows for bulk processing of Python files, which is particularly useful for large projects.
 
-The script also handles environment variables by loading them from a specified `.env` file at startup. This feature allows for the configuration of the script's behavior through external settings, such as API keys or environment-specific parameters, enhancing its flexibility and ease of use in different environments.
+The CLI also supports custom configuration through the use of an environment file. Users can specify the path to an environment file containing necessary configuration variables, which the CLI will then load and apply. This functionality is facilitated through the `dotenv` package, which is adept at managing environment variables for Python projects.
 
-The version information of the package can be displayed using the `--version` or `-v` option, which provides immediate feedback on the script's current version as specified by the `__version__` variable imported from the `constants` module.
+Moreover, the CLI includes a version information feature that displays the current version of the package when invoked. This can be useful for users to verify the version of the tool they are using.
 
-In summary, `cli.py` is a versatile tool designed to leverage language models for the automatic generation of markdown documentation, catering to both individual files and directories. Its integration with environment variables and the Typer library for command-line options makes it highly configurable and easy to use.
+This utility stands out by not just automating the documentation process but doing so in a way that is highly configurable and adaptable to the needs of various projects. By leveraging the power of modern language models, it aims to produce high-quality, human-readable documentation that can significantly enhance code readability and maintenance.
 
-*This documentation was generated using gpt-4-turbo-preview*
+*This documentation was generated using gpt-4-turbo-preview.*

@@ -2,26 +2,28 @@
 
 ## Summary
 
-This file defines the constants used across the `bezzanlabs.gpt_docgen` package.
+This code defines a set of constants used across the package, including available chat models and package metadata.
 
 ## Dependencies
 
 ### Standard Library
-None
+
+- None
 
 ### Other
-None
+
+- `langchain_anthropic`
+- `langchain_cohere`
+- `langchain_openai`
 
 ## Description
 
-The `constants.py` file is a central repository for the constant values that are used throughout the `bezzanlabs.gpt_docgen` package. By defining constants in a separate file, the package ensures that these values are easily maintainable and accessible across different modules.
+The `constants.py` file serves as a centralized location for defining and managing constants used throughout the package. This includes metadata about the package itself such as its name, version, and author, as well as a dictionary of available chat models. The constants defined in this file are essential for ensuring consistency and manageability of the package's configurations and options.
 
-This file includes constants such as `__package_name__`, `__version__`, and `__author__`:
+The metadata includes the package name (`__package_name__`), its current version (`__version__`), and the author's details (`__author__`). Such metadata is crucial for package distribution and maintenance, providing users and developers with basic information about the package.
 
-- `__package_name__`: Defines the name of the package. This is useful for logging, debugging, or any functionality that requires the program to be aware of its package name.
-- `__version__`: Specifies the current version of the package. This is crucial for dependency management, package updates, and compatibility checks.
-- `__author__`: Contains the name and contact information of the primary author or maintainer of the package. This information is valuable for users or developers who may have questions or need to report issues.
+Additionally, the file maps a set of keys to specific chat model classes from various libraries through the `_available_chats` dictionary. This mapping facilitates the dynamic selection and instantiation of chat models based on the user's preferences or requirements. The keys represent the names of the chat services (e.g., "openai", "cohere", "anthropic"), and the values are the respective classes from imported modules that implement the functionality for interacting with these services. This approach allows for a modular and flexible architecture where new chat models can be easily added or removed by updating this dictionary.
 
-These constants are typically accessed by other modules within the package to retrieve essential metadata about the package itself. For instance, documentation tools or package management systems might use these values to generate documentation or manage package versions.
+In summary, `constants.py` plays a pivotal role in the package's configuration, providing a single source of truth for important constants that influence the package's behavior and its interaction with external services.
 
 *This documentation was generated using gpt-4-turbo-preview.*

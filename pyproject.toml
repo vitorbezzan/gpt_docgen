@@ -55,4 +55,3 @@ addopts = "--cov=src --cov-report html --cov-report term-missing --cov-fail-unde
 pythonpath = [
   "src"
 ]
-

@@ -2,20 +2,13 @@
 Base package using LLMs with langchain.
 """
 import typing as tp
-import typer
 
-from langchain_anthropic import ChatAnthropic
-from langchain_cohere import ChatCohere
+import typer
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
 
-_vendors = {
-    "openai": ChatOpenAI,
-    "cohere": ChatCohere,
-    "anthropic": ChatAnthropic,
-}
+from constants import _available_chats
 
 _description_message = """
 Generate markdown documentation for this file.
@@ -42,11 +35,11 @@ Use headings to breakdown the documentation into the following sections:
 
 - Description: A summary of few paragraphs describing what the file does and how it works.
     Please use wording that is resembles other software documentation. Good examples
-    of this can be found in the documentation of the Python standard library. Do not use
+    of this can be found in the documentation of Apache Foundation software. Do not use
     anything from the docstrings in this section.
 
-Please include the sentence "This documentation was generated using %s"
-at the end of the document, in italics.
+Please include the sentence "This documentation was generated using %s" at the end of
+the document, in italics.
 
 The code is the following:
 """
@@ -72,11 +65,11 @@ def generate_description(
     """
     try:
         selected_llm, parser = (
-            _vendors.get(vendor, "openai")(model=model),  # type: ignore
+            _available_chats.get(vendor, "openai")(model=model),  # type: ignore
             StrOutputParser(),
         )
-    except:
-        raise typer.Exit("Unknown error instantiating language model.")
+    except:  # noqa: E722
+        raise typer.Exit(code=-1)
 
     messages = [
         SystemMessage(content=_description_message % (name, model)),
@@ -85,7 +78,7 @@ def generate_description(
 
     try:
         result = selected_llm.invoke(input=messages)
-    except:
-        raise typer.Exit("Unknown error invoking language model.")
+    except:  # noqa: E722
+        raise typer.Exit(code=-1)
 
     return parser.invoke(result)

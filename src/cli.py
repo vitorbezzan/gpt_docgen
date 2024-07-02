@@ -4,16 +4,26 @@ CLI base module for package.
 import glob
 import os
 import pathlib
-from typing import Optional
+from typing import Optional, cast
 
 import typer
 from dotenv import dotenv_values, load_dotenv
+from pydantic import AfterValidator, validate_call
+from pydantic.types import Annotated
 
-from constants import __package_name__, __version__
+from constants import __package_name__, __version__, _available_chats
 from describe_file import generate_description
 
 app = typer.Typer(name=f"{__package_name__}", no_args_is_help=True)
-current_dir = pathlib.Path(os.getcwd())
+current_dir = pathlib.Path(os.getcwd()).resolve().absolute()
+
+
+def _is_acceptable_vendor(vendor: str) -> str:
+    assert vendor in _available_chats  # noqa: S101
+    return vendor
+
+
+AcceptedVendor = Annotated[str, AfterValidator(_is_acceptable_vendor)]
 
 
 def _environment(path: str) -> None:
@@ -23,8 +33,8 @@ def _environment(path: str) -> None:
     Args:
         path: Path to the environment file.
     """
-    environment_path = pathlib.Path(path).resolve()
-    typer.echo(f"Current working dir is {current_dir.absolute()}")
+    environment_path = pathlib.Path(path).resolve().absolute()
+    typer.echo(f"Current working dir is {current_dir}")
 
     if environment_path.is_file():
         load_dotenv(path)
@@ -47,6 +57,42 @@ def _version(value: bool) -> None:
         raise typer.Exit()
 
 
+@validate_call
+def _describe_file(
+    in_file: pathlib.Path,
+    out_file: pathlib.Path,
+    vendor: AcceptedVendor,
+    model: str,
+) -> None:
+    """
+    Calls a description for one specific file.
+
+    Args:
+        in_file: File path to describe.
+        out_file: File path to save the description.
+        vendor: Vendor to use for model.
+        model: Model to use from the selected vendor.
+    """
+    in_file_ = in_file.resolve().absolute()
+
+    if in_file_.is_file():
+        typer.echo(f"Generating description for {in_file_}")
+        with in_file.open("r") as python_file:
+            file_content = python_file.read()
+    else:
+        raise typer.BadParameter(f"File not found: {in_file_}")
+
+    with out_file.resolve().absolute().open("w") as md_file:
+        md_file.write(
+            generate_description(
+                in_file.name,
+                vendor,
+                model,
+                file_content,
+            )
+        )
+
+
 @app.command()
 def describe_file(
     path: str,
@@ -62,25 +108,13 @@ def describe_file(
         vendor: Vendor to use for model.
         model: Model to use from the selected vendor.
     """
-    file_path = pathlib.Path(path).resolve()
-
-    if file_path.is_file():
-        typer.echo(f"Generating description for {file_path.absolute()}")
-        with file_path.open(mode="r") as python_file:
-            file_content = python_file.read()
-    else:
-        raise typer.BadParameter(f"File not found: {file_path}")
-
-    md_file_location = file_path.with_suffix(".md").resolve().absolute()
-    with md_file_location.open(mode="w") as md_file:
-        md_file.write(
-            generate_description(
-                file_path.name,
-                vendor,
-                model,
-                file_content,
-            )
-        )
+    file_path = pathlib.Path(path)
+    _describe_file(
+        file_path,
+        file_path.with_suffix(".md"),
+        cast(AcceptedVendor, vendor),
+        model,
+    )
 
 
 @app.command()
@@ -100,34 +134,32 @@ def describe_dir(
     Returns:
          Markdown files for each .py file in path.
     """
-    dir_path = pathlib.Path(path)
+    dir_path = pathlib.Path(path).absolute().resolve()
 
     if dir_path.is_dir():
-        typer.echo(f"Generating descriptions for dir {dir_path.absolute()}")
-        md_dir = pathlib.Path(current_dir/"docs"/"markdown")
+        typer.echo(f"Generating descriptions for dir {dir_path}")
+        md_dir = current_dir / "docs" / "markdown"
         md_dir.mkdir(parents=True, exist_ok=True)
+        typer.echo(f"Markdown files will be saved in {md_dir}")
 
-        for file_path in glob.glob(f"{dir_path}/*.py", recursive=True):
+        py_files = glob.glob(f"{dir_path}/**/*.py", recursive=True)
+        for file_path in py_files:
             if "__init__" in file_path:
                 continue
 
-            typer.echo(f"Generating description for {file_path}")
-            with open(file_path, "r") as python_file:
-                file_content = python_file.read()
+            rel_to = pathlib.Path(file_path).relative_to(current_dir)
 
-            md_file_location = (
-                pathlib.Path(md_dir/file_path).with_suffix(".md").resolve().absolute()
+            md_location = (current_dir / "docs" / "markdown" / rel_to).with_suffix(
+                ".md"
             )
-            md_file_location.parent.mkdir(parents=True, exist_ok=True)
-            with open(md_file_location, "w") as markdown_file:
-                markdown_file.write(
-                    generate_description(
-                        pathlib.Path(file_path).name,
-                        vendor,
-                        model,
-                        file_content,
-                    )
-                )
+            md_location.parent.mkdir(parents=True, exist_ok=True)
+
+            _describe_file(
+                pathlib.Path(file_path),
+                md_location,
+                cast(AcceptedVendor, vendor),
+                model,
+            )
 
 
 @app.callback()
