@@ -31,7 +31,8 @@ def generate_embedding(
     model: tp.Optional[str] = None,
 ) -> None:
     """
-    Generates embedding for a given code path.
+    Generates embedding for a given code path. Needs to run in root directory for
+    package.
 
     Args:
         current_path: Path to the current running directory.
@@ -41,6 +42,9 @@ def generate_embedding(
     Returns:
         Generated embedding for code in docs/embeddings/.
     """
+    db_path = current_path / "docs" / "embedding"
+    db_path.mkdir(parents=True, exist_ok=True)
+
     documents = GenericLoader.from_filesystem(
         f"{current_path}",
         glob="**/*",
@@ -66,7 +70,7 @@ def generate_embedding(
     Chroma.from_documents(
         documents=texts,
         embedding=embeddings,
-        persist_directory=f"{current_path/'docs'/'embedding'}",
+        persist_directory=f"{db_path}",
     )
 
 
@@ -99,11 +103,13 @@ def generate_readme(
     Args:
         current_path: Path to the current running directory.
         vendor: Vendor of the model to use when generating README for.
+        model: Model to use for the given vendor.
 
     Returns:
         Generated README for code in README.md.
     """
     db_path = current_path / "docs" / "embedding"
+
     if db_path.exists():
         if model is None:
             embeddings = _available_embeddings.get(vendor, "openai")()
@@ -126,4 +132,4 @@ def generate_readme(
             readme.write(result["answer"])
 
     else:
-        raise typer.Abort("No embeddings found. Please run generate_embedding first.")
+        raise typer.Abort("No embeddings found. Please run 'embedding' command first.")

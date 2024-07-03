@@ -7,7 +7,7 @@ import pathlib
 from typing import Optional
 
 import typer
-from dotenv import dotenv_values, load_dotenv
+from dotenv import load_dotenv
 
 from constants import __package_name__, __version__
 from describe_file import describe
@@ -29,9 +29,6 @@ def _environment(path: str) -> None:
 
     if environment_path.is_file():
         load_dotenv(path)
-        keys_loaded = list(dotenv_values(path).keys())
-
-        typer.echo(f"Environment keys loaded: {keys_loaded}")
     else:
         raise typer.BadParameter(f"environment file not found: {path}")
 
@@ -56,14 +53,14 @@ def describe_file(
 ) -> None:
     """
     Runs language model in file to generate a markdown description for it.
-    Generates explanation in the same working directory.
+    Generates description in the same working directory.
 
     Args:
         path: Path for file to generate explanation.
         vendor: Vendor to use for model.
         model: Model to use from the selected vendor.
     """
-    file_path = pathlib.Path(path)
+    file_path = pathlib.Path(path).absolute().resolve()
     describe(
         file_path,
         file_path.with_suffix(".md"),
@@ -87,15 +84,13 @@ def describe_dir(
         model: Model to use from the selected vendor.
 
     Returns:
-         Markdown files for each .py file in path.
+         Markdown files for each .py file in path. Saves in ./docs/markdown directory.
     """
     dir_path = pathlib.Path(path).absolute().resolve()
 
     if dir_path.is_dir():
-        typer.echo(f"Generating descriptions for dir {dir_path}")
         md_dir = current_dir / "docs" / "markdown"
         md_dir.mkdir(parents=True, exist_ok=True)
-        typer.echo(f"Markdown files will be saved in {md_dir}")
 
         py_files = glob.glob(f"{dir_path}/**/*.py", recursive=True)
         for file_path in py_files:
@@ -127,7 +122,6 @@ def embedding(vendor: str = "openai", model: Optional[str] = None):
         vendor: Vendor to use for model.
         model: Specific model to use when generating the embedding.
     """
-    (current_dir / "docs" / "embedding").mkdir(parents=True, exist_ok=True)
     generate_embedding(current_dir, vendor, model)
 
 
