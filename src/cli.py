@@ -10,7 +10,7 @@ import typer
 from dotenv import load_dotenv
 
 from constants import __package_name__, __version__
-from describe_file import describe
+from describe_file import describe, debug
 from embedding import generate_embedding, generate_readme
 
 app = typer.Typer(name=f"{__package_name__}", no_args_is_help=True)
@@ -67,6 +67,25 @@ def describe_file(
         vendor,
         model,
     )
+
+
+@app.command()
+def debug_file(
+    path: str,
+    vendor: str = "openai",
+    model: str = "gpt-4-turbo-preview",
+) -> None:
+    """
+    Runs language model in file to generate a markdown debug information for it.
+    Generates description in the same working directory.
+
+    Args:
+        path: Path for file to generate explanation.
+        vendor: Vendor to use for model.
+        model: Model to use from the selected vendor.
+    """
+    file_path = pathlib.Path(path).absolute().resolve()
+    typer.echo(debug(file_path, vendor, model))
 
 
 @app.command()
