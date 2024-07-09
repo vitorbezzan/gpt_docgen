@@ -115,11 +115,10 @@ def debug(
     model: str,
 ) -> str:
     """
-    Calls a description for one specific file.
+    Calls a debug description for one specific file.
 
     Args:
         in_file: File path to describe.
-        out_file: File path to save the description.
         vendor: Vendor to use for model.
         model: Model to use from the selected vendor.
     """
