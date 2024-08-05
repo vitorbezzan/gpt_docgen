@@ -24,11 +24,12 @@ build:
 
 .PHONY: test
 test:
-	pytest tests/
+	pytest -rP tests/
 
 .PHONY: docs
 docs:
-	cp -r docs/ docs_temp/
-	export PYTHONPATH=$$PYTHONPATH:"." && sphinx-apidoc -o ./docs_temp ./src/bezzanlabs
-	export PYTHONPATH=$$PYTHONPATH:"." && sphinx-build -b html docs_temp/ docs/build/
+	cp -r docs_build/. docs_temp/
+	export PYTHONPATH=$$PYTHONPATH:"./src" && sphinx-apidoc -o ./docs_temp ./src
+	export PYTHONPATH=$$PYTHONPATH:"./src" && sphinx-build -b html docs_temp/ docs/
+	cp -r docs_temp/.nojekyll docs/.nojekyll
 	rm -rf docs_temp/

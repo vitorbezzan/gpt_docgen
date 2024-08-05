@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.cli &mdash; bezzanlabs.gpt_docgen 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../../index.html" class="icon icon-home">
+            bezzanlabs.gpt_docgen
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src.html">src package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src.cli">src.cli module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.debug_file"><code class="docutils literal notranslate"><span class="pre">debug_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.describe_dir"><code class="docutils literal notranslate"><span class="pre">describe_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.describe_file"><code class="docutils literal notranslate"><span class="pre">describe_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.embedding"><code class="docutils literal notranslate"><span class="pre">embedding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.cli.readme"><code class="docutils literal notranslate"><span class="pre">readme()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src.constants">src.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src.describe_file">src.describe_file module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.describe_file.call_description"><code class="docutils literal notranslate"><span class="pre">call_description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.describe_file.debug"><code class="docutils literal notranslate"><span class="pre">debug()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.describe_file.describe"><code class="docutils literal notranslate"><span class="pre">describe()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src.embedding">src.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.embedding.generate_embedding"><code class="docutils literal notranslate"><span class="pre">generate_embedding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.embedding.generate_readme"><code class="docutils literal notranslate"><span class="pre">generate_readme()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src.prompts">src.prompts module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../src.html#module-src">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../src.html#src.start_application"><code class="docutils literal notranslate"><span class="pre">start_application()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Auto-generated module documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown/src/cli.html">cli.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/cli.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/cli.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/cli.html#standard-library">Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/cli.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/cli.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown/src/constants.html">constants.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/constants.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/constants.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/constants.html#standard-library">Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/constants.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/constants.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown/src/describe_file.html">describe_file.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/describe_file.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/describe_file.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/describe_file.html#standard-library">Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/describe_file.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/describe_file.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown/src/embedding.html">embedding.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/embedding.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/embedding.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/embedding.html#standard-library">Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/embedding.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/embedding.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown/src/prompts.html">prompts.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/prompts.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/prompts.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/prompts.html#standard-library">Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/src/prompts.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/src/prompts.html#description">Description</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">bezzanlabs.gpt_docgen</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../src.html">src</a></li>
+      <li class="breadcrumb-item active">src.cli</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for src.cli</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">CLI base module for package.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">typer</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">__package_name__</span><span class="p">,</span> <span class="n">__version__</span>
+<span class="kn">from</span> <span class="nn">describe_file</span> <span class="kn">import</span> <span class="n">debug</span><span class="p">,</span> <span class="n">describe</span>
+<span class="kn">from</span> <span class="nn">embedding</span> <span class="kn">import</span> <span class="n">generate_embedding</span><span class="p">,</span> <span class="n">generate_readme</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__package_name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">no_args_is_help</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">current_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="describe_file">
+<a class="viewcode-back" href="../../src.html#src.cli.describe_file">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">describe_file</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">vendor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ANTHROPIC&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs language model in file to generate a markdown description for it.</span>
+<span class="sd">        Generates description in the same working directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: Path for file to generate explanation.</span>
+<span class="sd">        vendor: Vendor to use for model.</span>
+<span class="sd">        model: Model to use from the selected vendor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="n">describe</span><span class="p">(</span>
+        <span class="n">file_path</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">),</span>
+        <span class="n">vendor</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="describe_dir">
+<a class="viewcode-back" href="../../src.html#src.cli.describe_dir">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">describe_dir</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">vendor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ANTHROPIC&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs language model in directory to generate a description for each file. Saves</span>
+<span class="sd">        generated markdown description using same directory structure.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: Path to dir to generate explanations for. Path can relative or absolute</span>
+<span class="sd">            as long it exists.</span>
+<span class="sd">        vendor: Vendor to use for model.</span>
+<span class="sd">        model: Model to use from the selected vendor.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         Markdown files for each .py file in path. Saves in ./generated/markdown</span>
+<span class="sd">            directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dir_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">dir_path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="n">md_dir</span> <span class="o">=</span> <span class="n">current_dir</span> <span class="o">/</span> <span class="s2">&quot;generated&quot;</span> <span class="o">/</span> <span class="s2">&quot;markdown&quot;</span>
+        <span class="n">md_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">py_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dir_path</span><span class="si">}</span><span class="s2">/**/*.py&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">py_files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;__init__&quot;</span> <span class="ow">in</span> <span class="n">file_path</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">rel_to</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_dir</span><span class="p">)</span>
+
+            <span class="n">md_location</span> <span class="o">=</span> <span class="p">(</span><span class="n">current_dir</span> <span class="o">/</span> <span class="s2">&quot;generated&quot;</span> <span class="o">/</span> <span class="s2">&quot;markdown&quot;</span> <span class="o">/</span> <span class="n">rel_to</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span>
+                <span class="s2">&quot;.md&quot;</span>
+            <span class="p">)</span>
+            <span class="n">md_location</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">describe</span><span class="p">(</span>
+                <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">),</span>
+                <span class="n">md_location</span><span class="p">,</span>
+                <span class="n">vendor</span><span class="p">,</span>
+                <span class="n">model</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="debug_file">
+<a class="viewcode-back" href="../../src.html#src.cli.debug_file">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">debug_file</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">vendor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ANTHROPIC&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs language model in file to generate a markdown debug information for it.</span>
+<span class="sd">    Generates description in the same working directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: Path for file to generate explanation.</span>
+<span class="sd">        vendor: Vendor to use for model.</span>
+<span class="sd">        model: Model to use from the selected vendor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="n">debug</span><span class="p">(</span>
+        <span class="n">file_path</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">),</span>
+        <span class="n">vendor</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="embedding">
+<a class="viewcode-back" href="../../src.html#src.cli.embedding">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">embedding</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates README markdown file using LLMs. Scans for a directory, generates a simple</span>
+<span class="sd">        explanation for each component and consolidates it into a file.</span>
+
+<span class="sd">    Currently, embedding function only works with &quot;--vendor openai&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">generate_embedding</span><span class="p">(</span><span class="n">current_dir</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="readme">
+<a class="viewcode-back" href="../../src.html#src.cli.readme">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">readme</span><span class="p">(</span><span class="n">vendor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ANTHROPIC&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates README.md file in root using LLMs. User needs to run &quot;embedding&quot; command</span>
+<span class="sd">        first in order to generate the summary of the content for the files.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vendor: Vendor to use for model.</span>
+<span class="sd">        model: Model to use from the selected vendor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">generate_readme</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">vendor</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_environment</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Treats the environment variable path.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: Path to the environment file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">environment_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current working dir is </span><span class="si">{</span><span class="n">current_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">environment_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">load_dotenv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;environment file not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_version</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shows version information and exits.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: Boolean value to show version information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__package_name__</span><span class="si">}</span><span class="s2"> v</span><span class="si">{</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../src.html#src.cli.main">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+    <span class="n">environment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="s2">&quot;.env&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--environment&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-e&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Specific path to environment file.&quot;</span><span class="p">,</span>
+        <span class="n">callback</span><span class="o">=</span><span class="n">_environment</span><span class="p">,</span>
+        <span class="n">is_eager</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;--version&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-v&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Show the application&#39;s version and exit.&quot;</span><span class="p">,</span>
+        <span class="n">callback</span><span class="o">=</span><span class="n">_version</span><span class="p">,</span>
+        <span class="n">is_eager</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">return</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 - 20XX Vitor Pereira Bezzan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>
