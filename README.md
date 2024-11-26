@@ -40,8 +40,14 @@ This package is made to be run inside its own virtual environment, so it is reco
 To generate documentation for your codebase, navigate to your project directory and run:
 
 ```bash
-gpt_docgen describe_file --path /path/to/your/file.py
+gpt_docgen initialize
 ```
+to initilialize the vector database for your code. Then,
+
+```bash
+gpt_docgen describe-dir
+```
+to generate markdown descriptions for your directory.
 
 You can specify the model and vendor you wish to use with additional flags. For a detailed explanation of all available commands and options, use:
 

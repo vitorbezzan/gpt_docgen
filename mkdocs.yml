@@ -4,6 +4,16 @@ repo_url: https://github.com/vitorbezzan/gpt_docgen
 
 nav:
   - Home: README.md
+  - Available Chats: generated/available_chats.md
+  - Available Embeds: generated/available_embeddings.md
+  - CLI: generated/cli.md
+  - Constants: generated/constants.md
+  - Explain File: generated/explain_file.md
+  - Initialize: generated/initialize.md
+  - API:
+      - CLI: api/cli.md
+      - Explain File: api/explain_file.md
+      - Initialize: api/initialize.md
 
 theme:
   name: material

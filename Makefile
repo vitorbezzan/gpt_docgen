@@ -25,5 +25,12 @@ build:
 docs:
 	cp ./README.md ./docs/README.md
 	mkdocs build
-	touch ./docs/.nojekyll
+	touch ./site/.nojekyll
 	rm ./docs/README.md
+
+.PHONY: serve-docs
+serve-docs:
+	cp ./README.md ./docs/README.md
+	mkdocs build
+	touch ./site/.nojekyll
+	mkdocs serve
