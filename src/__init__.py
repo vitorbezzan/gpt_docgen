@@ -1,5 +1,5 @@
 """
-Starting point for the package.
+Starting point for the package CLI.
 """
 from cli import app
 

@@ -1,0 +1,41 @@
+site_name: GPT Documentation Generator
+site_description: Package to generate documentation using LLMs.
+repo_url: https://github.com/vitorbezzan/gpt_docgen
+
+nav:
+  - Home: README.md
+
+theme:
+  name: material
+
+  icon:
+    logo: material/brain
+  features:
+    - content.action.edit
+    - content.code.copy
+    - content.tabs.link
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tracking
+    - toc.follow
+    - toc.integrate
+    - navigation.top
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true
+            show_root_full_path: false
+            show_root_members_full_path: false
+            show_symbol_type_heading: true
+            members_order: alphabetical
+            docstring_section_style: table
+            show_signature: true
+            show_signature_annotations: false
+            signature_crossrefs: true
+            separate_signature: true
+            show_source: true
+            line_length: 60

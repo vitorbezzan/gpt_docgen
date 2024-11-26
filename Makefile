@@ -8,7 +8,6 @@ install:
 
 .PHONY: format
 format:
-	isort src/
 	pre-commit run --all-files
 
 .PHONY: mypy
@@ -22,14 +21,9 @@ flint: format mypy
 build:
 	python -m build .
 
-.PHONY: test
-test:
-	pytest -rP tests/
-
 .PHONY: docs
 docs:
-	cp -r docs_build/. docs_temp/
-	export PYTHONPATH=$$PYTHONPATH:"./src" && sphinx-apidoc -o ./docs_temp ./src
-	export PYTHONPATH=$$PYTHONPATH:"./src" && sphinx-build -b html docs_temp/ docs/
-	cp -r docs_temp/.nojekyll docs/.nojekyll
-	rm -rf docs_temp/
+	cp ./README.md ./docs/README.md
+	mkdocs build
+	touch ./docs/.nojekyll
+	rm ./docs/README.md
